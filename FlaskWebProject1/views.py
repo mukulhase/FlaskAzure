@@ -67,8 +67,8 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             data = visionconnect.getTag("http://lifegivesyoulemons.azurewebsites.net/" + url_for('static', filename='uploads/' + filename))
-            trans = visionconnect.TranslateWord(data)
-            return "Uploaded " + data + trans + url_for('static', filename='uploads/' + filename)
+            # trans = visionconnect.TranslateWord(data)
+            return "Uploaded " + data
     return render_template(
         'upload.html'
             )
