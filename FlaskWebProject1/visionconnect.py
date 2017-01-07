@@ -62,7 +62,7 @@ def TranslateWord(tag):
 		'appid': appid,
 		'text' : tag,
 		'from' : 'en-US',
-		'to' : 'hi',
+		'to' : 'fr',
 		'maxTranslations' : 1,
 	})
 
