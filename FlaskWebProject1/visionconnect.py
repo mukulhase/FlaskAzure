@@ -25,8 +25,9 @@ def getTag(url):
 		data = response.read()
 		#print(data)
 		conn.close()
-		parsed_json = data
-		return parsed_json
+		parsed_json = json.loads(data)
+		tag = parsed_json['tags'][0]['name']
+		return tag
 	except:
 		return ''.join(traceback.format_stack())
 
@@ -49,21 +50,22 @@ def getToken():
 		return
 
 
-acc_token = getToken()
-# print(acc_token)
-
-appid = "Bearer" + " " + acc_token
-
-transParams = urllib.urlencode({
-	'appid': appid,
-	'text' : tag,
-	'from' : 'en-US',
-	'to' : 'hi',
-	'maxTranslations' : 1,
-})
 
 #from, to are language encodings, num = number of max translations
-def TranslateWord():
+def TranslateWord(tag):
+	acc_token = getToken()
+	# print(acc_token)
+
+	appid = "Bearer" + " " + acc_token
+
+	transParams = urllib.urlencode({
+		'appid': appid,
+		'text' : tag,
+		'from' : 'en-US',
+		'to' : 'hi',
+		'maxTranslations' : 1,
+	})
+
 	try:
 		conn = httplib.HTTPSConnection('api.microsofttranslator.com')
 		conn.request("POST", "/V2/Http.svc/GetTranslations?%s" % transParams, params, translation_headers)
