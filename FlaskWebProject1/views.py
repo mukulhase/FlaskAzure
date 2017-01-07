@@ -73,7 +73,7 @@ def upload_file():
                 return "Uploaded " + data + " " +  trans
             except:
                 trans = ''.join(traceback.format_stack())
-            return "Uploaded " + data + " " + trans.toString()
+            return "Uploaded " + data + " " + trans
     return render_template(
         'upload.html'
             )

@@ -70,7 +70,7 @@ def TranslateWord(tag):
 		conn = httplib.HTTPSConnection('api.microsofttranslator.com')
 		conn.request("POST", "/V2/Http.svc/GetTranslations?%s" % transParams, params, translation_headers)
 		response = conn.getresponse()
-		data = "start " + response.read() + " end"
+		data = response.read() 
 		conn.close()
 		return data
 	except Exception as e:
