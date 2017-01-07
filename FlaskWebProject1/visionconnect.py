@@ -71,10 +71,8 @@ def TranslateWord(tag):
 		conn.request("POST", "/V2/Http.svc/GetTranslations?%s" % transParams, params, translation_headers)
 		response = conn.getresponse()
 		data = response.read()
-		print(data)
 		conn.close()
-		return
+		return data
 	except Exception as e:
-		print(e)
-		return
+		return ''.join(traceback.format_stack())
 

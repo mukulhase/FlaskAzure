@@ -9,6 +9,7 @@ import os
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import visionconnect
+import sys, traceback
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/uploads')
@@ -67,8 +68,11 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             data = visionconnect.getTag("http://lifegivesyoulemons.azurewebsites.net/" + url_for('static', filename='uploads/' + filename))
-            # trans = visionconnect.TranslateWord(data)
-            return "Uploaded " + data
+            try:
+                trans = visionconnect.TranslateWord(data)
+            except:
+
+            return "Uploaded " + data + trans
     return render_template(
         'upload.html'
             )
