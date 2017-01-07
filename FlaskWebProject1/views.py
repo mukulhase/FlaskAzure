@@ -70,10 +70,10 @@ def upload_file():
             data = visionconnect.getTag("http://lifegivesyoulemons.azurewebsites.net/" + url_for('static', filename='uploads/' + filename))
             try:
                 trans = visionconnect.TranslateWord(data)
-                return "Uploaded " + data + trans
+                return "Uploaded " + data + " " +  trans
             except:
                 trans = ''.join(traceback.format_stack())
-            return "Uploaded " + data + trans
+            return "Uploaded " + data + " " + trans
     return render_template(
         'upload.html'
             )
