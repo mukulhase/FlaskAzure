@@ -67,7 +67,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             hello = visionconnect.getTag(url_for('static', filename='uploads/' + filename))
-            return "Uploaded " + hello
+            return "Uploaded " + hello + url_for('static', filename='uploads/' + filename)
     return render_template(
         'upload.html'
             )
