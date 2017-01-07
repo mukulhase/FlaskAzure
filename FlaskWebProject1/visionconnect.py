@@ -47,7 +47,7 @@ def getToken():
 		return token
 	except Exception as e:
 		print(e)
-		return
+		return "error in ", e
 
 
 
@@ -62,7 +62,7 @@ def TranslateWord(tag):
 		'appid': appid,
 		'text' : tag,
 		'from' : 'en-US',
-		'to' : 'hi',
+		'to' : 'fr',
 		'maxTranslations' : 1,
 	})
 
@@ -74,5 +74,5 @@ def TranslateWord(tag):
 		conn.close()
 		return data
 	except Exception as e:
-		return ''.join(traceback.format_stack())
+		return "erro in ", e
 
