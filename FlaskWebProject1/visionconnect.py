@@ -1,5 +1,5 @@
 import httplib, urllib, base64, json, urllib2
-
+import sys, traceback
 image_headers = {
 	# Request headers
 	'Content-Type': 'application/json',
@@ -25,12 +25,10 @@ def getTag(url):
 		data = response.read()
 		#print(data)
 		conn.close()
-		parsed_json = json.loads(data)
-		tag = parsed_json['tags'][0]['name']
-		print tag
-		return tag
-	except Exception as e:
-		print(e)
+		parsed_json = data
+		return parsed_json
+	except:
+		return ''.join(traceback.format_stack())
 
 url = "http://www.ikea.com/PIAimages/0121010_PE277826_S5.JPG"
 # tag = getTag(url)
