@@ -79,9 +79,7 @@ def messenger_reply():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
 	if request.method == 'POST':
-
 		# check if the post request has the file part
-
 		if 'file' not in request.files:
 			flash('No file part')
 			return redirect(request.url)
@@ -97,20 +95,15 @@ def upload_file():
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'],
 					  filename))
-			data = \
-				visionconnect.getTag('http://lifegivesyoulemons.azurewebsites.net/'
-					 + url_for('static', filename='uploads/'
-					+ filename))
+			data =  visionconnect.getTag('http://lifegivesyoulemons.azurewebsites.net/'+ url_for('static', filename='uploads/' + filename))
 			try:
 				trans = visionconnect.TranslateWord(data)
 				# out = "<object>" + data + "</object>" + " " + "<translatedObj>" + trans + "</translatedObj>"
 				# return Response(out, mimetype='text/xml')
 
 			except:
-
 				# out = "<object>" + data + "</object>" + " " + "<translatedObj>" trans + "</translatedObj>"
 				# return Response(out, mimetype='text/xml')
-
 				trans = ''.join(traceback.format_stack())
 			return 'Uploaded ' + data + ' ' + trans
 	return render_template('upload.html')
