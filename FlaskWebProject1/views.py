@@ -69,12 +69,10 @@ def messenger_reply():
 			trans = visionconnect.TranslateWord(data)
 			url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
 			payload = "{\n\t\"message\": \"Blah\"\n}"
-			headers = {
-			 'content-type': "application/json",
-			 }
+			headers = {'content-type': "application/json",}
 			conn = httplib.HTTPSConnection('https://evening-caverns-89101.herokuapp.com/sendAuro')
 			conn.request("POST", "", payload, headers)
-	return return_template('upload.html')
+			return render_template('upload.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
