@@ -82,11 +82,11 @@ def upload_file():
 @app.route('/uploadURL', methods=['GET', 'POST'])
 def upload_URL():
     if request.method == 'POST':
-        url = request.data.get('url')
+        url = "http://www.yourmomhatesthis.com/images/2016/12/Fish-PNG-15.png"
         data = visionconnect.getTag(url)
         try:
             trans = visionconnect.TranslateWord(data)
-            return "Uploaded " + data + " " +  trans
+            return "Uploaded " + data + " " +  trans + " " + request.args
         except:
             trans = ''.join(traceback.format_stack())
         return "Uploaded " + data + " " + trans
