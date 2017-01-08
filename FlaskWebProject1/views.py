@@ -86,34 +86,34 @@ def messenger_reply():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
-	if request.method == 'POST':
-		# check if the post request has the file part
-		if 'file' not in request.files:
-			flash('No file part')
-			return redirect(request.url)
-		file = request.files['file']
+	try:
+		if request.method == 'POST':
+			# check if the post request has the file part
+			if 'file' not in request.files:
+				flash('No file part')
+				return redirect(request.url)
+			file = request.files['file']
 
-		# if user does not select file, browser also
-		# submit a empty part without filename
+			# if user does not select file, browser also
+			# submit a empty part without filename
 
-		if file.filename == '':
-			flash('No selected file')
-			return redirect(request.url)
-		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)
-			file.save(os.path.join(app.config['UPLOAD_FOLDER'],
-					  filename))
-			data =  visionconnect.getTag('http://lifegivesyoulemons.azurewebsites.net/'+ url_for('static', filename='uploads/' + filename))
-			try:
+			if file.filename == '':
+				flash('No selected file')
+				return redirect(request.url)
+			if file and allowed_file(file.filename):
+				filename = secure_filename(file.filename)
+				file.save(os.path.join(app.config['UPLOAD_FOLDER'],
+						  filename))
+				data =  visionconnect.getTag('http://lifegivesyoulemons.azurewebsites.net/'+ url_for('static', filename='uploads/' + filename))
+				
 				trans = visionconnect.TranslateWord(data)
+				return 'Uploaded ' + data + ' ' + trans
 				# out = "<object>" + data + "</object>" + " " + "<translatedObj>" + trans + "</translatedObj>"
 				# return Response(out, mimetype='text/xml')
-
-			except:
 				# out = "<object>" + data + "</object>" + " " + "<translatedObj>" trans + "</translatedObj>"
 				# return Response(out, mimetype='text/xml')
-				trans = ''.join(traceback.format_stack())
-			return 'Uploaded ' + data + ' ' + trans
+	except:
+		return ''.join(traceback.format_stack())
 	return render_template('upload.html')
 
 
