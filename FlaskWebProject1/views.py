@@ -64,7 +64,7 @@ def allowed_file(filename):
 def messenger_reply():
 	if request.method == 'POST':        
  		url = request.json['url']
- 		data = visionconnect.getTag(url)
+ 		#data = visionconnect.getTag(url)
 		try:
  			#trans = visionconnect.TranslateWord(data)
  			url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
@@ -74,8 +74,9 @@ def messenger_reply():
  			#conn.request("POST", "/sendAuro", json.dumps(data), headers)
 			data = urllib.urlencode({"message": "Lolol"})
 			h = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
-			h.request('POST', '/sendAuro', data, headers)
-			r = h.getresponse()
+			#h.request('POST', '/sendAuro', data, headers)
+			#r = h.getresponse()
+			r = "asd"
 			return r
 # 			return render_template('upload.html')
  		except:
