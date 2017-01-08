@@ -5,7 +5,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from FlaskWebProject1 import app
-import os
+import os, requests
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import visionconnect
@@ -51,6 +51,21 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@app.route('/messengerReply', methods = ['GET', 'POST'])
+def messenger_reply():
+    if request.method == 'POST':
+        url = request.json['url']
+        data = visionconnect.getTag(url)
+        try:
+            trans = visionconnect.TranslateWord(data)
+            url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
+            payload = "{\n\t\"message\": \"Blah\"\n}"
+            headers = {
+                'content-type': "application/json",
+                }
+            response = requests.request("POST", url, data=payload, headers=headers)
+        
+    
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
