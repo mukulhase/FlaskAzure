@@ -55,15 +55,6 @@ def allowed_file(filename):
 def messenger_reply():
     if request.method == 'POST':
         url = request.json['url']
-        data = visionconnect.getTag(url)
-        try:
-            trans = visionconnect.TranslateWord(data)
-            url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
-            payload = "{\n\t\"message\": \"Blah\"\n}"
-            headers = {
-                'content-type': "application/json",
-                }
-            response = requests.request("POST", url, data=payload, headers=headers)
     return render_template('upload.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
