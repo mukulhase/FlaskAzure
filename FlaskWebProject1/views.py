@@ -63,7 +63,7 @@ def allowed_file(filename):
 @app.route('/messengerReply', methods = ['GET', 'POST'])
 def messenger_reply():
 	if request.method == 'POST':        
- 		url = request.data
+ 		url = request.json['url']
 		return url
 # 		data = visionconnect.getTag(url)
 #		try:
