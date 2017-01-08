@@ -70,7 +70,7 @@ def messenger_reply():
  			url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
  			data = {"message": "Lolol"}
  			headers = {'content-type': "application/json",}
- 			conn = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
+ 			#conn = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
  			#conn.request("POST", "/sendAuro", json.dumps(data), headers)
 # 			return render_template('upload.html')
  		except:
