@@ -8,7 +8,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from FlaskWebProject1 import app
-import os, json
+import os, json, urllib
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import visionconnect
@@ -72,7 +72,7 @@ def messenger_reply():
  			#headers = {'content-type': "application/json",}
  			#conn = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
  			#conn.request("POST", "/sendAuro", json.dumps(data), headers)
-			#data = urllib.urlencode({"message": "Lolol"})
+			data = urllib.urlencode({"message": "Lolol"})
 			#h = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
 			#h.request('POST', '/sendAuro', data, headers)
 			#r = h.getresponse()
