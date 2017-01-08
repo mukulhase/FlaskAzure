@@ -64,7 +64,6 @@ def allowed_file(filename):
 def messenger_reply():
 	if request.method == 'POST':        
  		url = request.json['url']
-		return url
  		data = visionconnect.getTag(url)
 		try:
  			#trans = visionconnect.TranslateWord(data)
@@ -75,7 +74,9 @@ def messenger_reply():
  			#conn.request("POST", "/sendAuro", json.dumps(data), headers)
 # 			return render_template('upload.html')
  		except:
+			return "Hello"
  			pass
+		return "Hello"
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
