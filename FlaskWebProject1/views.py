@@ -64,8 +64,7 @@ def messenger_reply():
                 'content-type': "application/json",
                 }
             response = requests.request("POST", url, data=payload, headers=headers)
-        
-    
+   
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
