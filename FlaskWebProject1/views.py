@@ -63,8 +63,9 @@ def allowed_file(filename):
 @app.route('/messengerReply', methods = ['GET', 'POST'])
 def messenger_reply():
 	if request.method == 'POST':        
- 		url = request.json['url']
- 		data = visionconnect.getTag(url)
+ 		url = request.data
+		return url
+# 		data = visionconnect.getTag(url)
 #		try:
 # 			#trans = visionconnect.TranslateWord(data)
 # 			url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
@@ -96,7 +97,6 @@ def upload_file():
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'],
 					  filename))
 			data =  visionconnect.getTag('http://lifegivesyoulemons.azurewebsites.net/'+ url_for('static', filename='uploads/' + filename))
-			return data
 			try:
 				trans = visionconnect.TranslateWord(data)
 				# out = "<object>" + data + "</object>" + " " + "<translatedObj>" + trans + "</translatedObj>"
