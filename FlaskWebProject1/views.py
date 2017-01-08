@@ -77,3 +77,17 @@ def upload_file():
     return render_template(
         'upload.html'
             )
+
+@app.route('/uploadURL', methods=['GET', 'POST'])
+def upload_URL():
+    if request.method == 'POST':
+        data = request.body.url
+        try:
+            trans = visionconnect.TranslateWord(data)
+            return "Uploaded " + data + " " +  trans
+        except:
+            trans = ''.join(traceback.format_stack())
+        return "Uploaded " + data + " " + trans
+    return render_template(
+        'upload.html'
+            )
