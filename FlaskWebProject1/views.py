@@ -59,8 +59,22 @@ def about():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() \
         in ALLOWED_EXTENSIONS
-
-
+	
+@app.route('/messengerReply', methods = ['GET', 'POST'])
+def messenger_reply():
+     if request.method == 'POST':
+         url = request.json['url']
+         data = visionconnect.getTag(url)
+         try:
+             trans = visionconnect.TranslateWord(data)
+             url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
+             payload = "{\n\t\"message\": \"Blah\"\n}"
+             headers = {
+                 'content-type': "application/json",
+                 }
+		conn = httplib.HTTPSConnection('https://evening-caverns-89101.herokuapp.com/sendAuro')
+		conn.request("POST", "", payload, headers)
+      
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
