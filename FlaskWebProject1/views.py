@@ -6,7 +6,7 @@ from datetime import datetime
 from flask import render_template
 from FlaskWebProject1 import app
 import os
-from flask import Flask, request, redirect, url_for, response
+from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import visionconnect
 import sys, traceback
