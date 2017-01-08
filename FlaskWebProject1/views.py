@@ -75,7 +75,7 @@ def messenger_reply():
 			data = urllib.urlencode({"message": "Lolol",})
 			#conn = httplib.HTTPSConnection('api.cognitive.microsoft.com')
 			h = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
-			#h.request('POST', '/sendAuro', data, headers)
+			h.request('POST', '/sendAuro', data, headers)
 			#r = h.getresponse()
 			r = "asd"
 			return r
