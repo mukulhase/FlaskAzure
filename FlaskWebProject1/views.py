@@ -81,7 +81,7 @@ def upload_file():
 @app.route('/uploadURL', methods=['GET', 'POST'])
 def upload_URL():
     if request.method == 'POST':
-        url = "https://www.takemefishing.org/tmf/assets/images/fish/american-shad-464x170.png"
+        url = "http://www.yourmomhatesthis.com/images/2016/12/Fish-PNG-15.png"
         data = visionconnect.getTag(url)
         try:
             trans = visionconnect.TranslateWord(data)
