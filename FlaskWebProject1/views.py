@@ -73,6 +73,8 @@ def messenger_reply():
 			conn = httplib.HTTPSConnection('https://evening-caverns-89101.herokuapp.com/sendAuro')
 			conn.request("POST", "", payload, headers)
 			return render_template('upload.html')
+		except:
+			pass
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
