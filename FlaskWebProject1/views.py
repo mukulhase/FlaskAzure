@@ -70,7 +70,7 @@ def upload_file():
             data = visionconnect.getTag("http://lifegivesyoulemons.azurewebsites.net/" + url_for('static', filename='uploads/' + filename))
             try:
                 trans = visionconnect.TranslateWord(data)
-                out = "<object>" + data + "</object>" + " " + "<translatedObj>" trans + "</translatedObj>"
+                out = "<object>" + data + "</object>" + " " + "<translatedObj>" + trans + "</translatedObj>"
                 return Response(out, mimetype='text/xml')
             except:
                 trans = ''.join(traceback.format_stack())
@@ -86,7 +86,7 @@ def upload_URL():
         data = visionconnect.getTag(url)
         try:
             trans = visionconnect.TranslateWord(data)
-            out = "<object>" + data + "</object>" + " " + "<translatedObj>" trans + "</translatedObj>"
+            out = "<object>" + data + "</object>" + " " + "<translatedObj>" + trans + "</translatedObj>"
             return Response(out, mimetype='text/xml')
         except:
             trans = ''.join(traceback.format_stack())
