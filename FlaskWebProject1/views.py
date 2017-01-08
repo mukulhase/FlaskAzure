@@ -74,7 +74,7 @@ def messenger_reply():
  			conn.request("POST", "/sendAuro", json.dumps(data), headers)
 # 			return render_template('upload.html')
  		except:
-			return "Hello"
+			return ''.join(traceback.format_stack())
  			pass
 		return "Success!"
 
