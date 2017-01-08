@@ -8,7 +8,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from FlaskWebProject1 import app
-import os, json, requests
+import os, json
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import visionconnect
@@ -70,8 +70,13 @@ def messenger_reply():
  			url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
  			data = {"message": "Lolol"}
  			headers = {'content-type': "application/json",}
- 			conn = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
- 			conn.request("POST", "/sendAuro", json.dumps(data), headers)
+ 			#conn = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
+ 			#conn.request("POST", "/sendAuro", json.dumps(data), headers)
+			data = urllib.urlencode({"message": "Lolol"})
+			h = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
+			h.request('POST', '/sendAuro', data, headers)
+			r = h.getresponse()
+			return r
 # 			return render_template('upload.html')
  		except:
 			return ''.join(traceback.format_stack())
@@ -80,36 +85,34 @@ def messenger_reply():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
-	try:
-		if request.method == 'POST':
-			# check if the post request has the file part
-			if 'file' not in request.files:
-				flash('No file part')
-				return redirect(request.url)
-			file = request.files['file']
+	if request.method == 'POST':
+		# check if the post request has the file part
+		if 'file' not in request.files:
+			flash('No file part')
+			return redirect(request.url)
+		file = request.files['file']
 
-			# if user does not select file, browser also
-			# submit a empty part without filename
+		# if user does not select file, browser also
+		# submit a empty part without filename
 
-			if file.filename == '':
-				flash('No selected file')
-				return redirect(request.url)
-			if file and allowed_file(file.filename):
-				filename = secure_filename(file.filename)
-				file.save(os.path.join(app.config['UPLOAD_FOLDER'],
-						  filename))
-				data =  visionconnect.getTag('http://lifegivesyoulemons.azurewebsites.net/'+ url_for('static', filename='uploads/' + filename))
-			
+		if file.filename == '':
+			flash('No selected file')
+			return redirect(request.url)
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'],
+					  filename))
+			data =  visionconnect.getTag('http://lifegivesyoulemons.azurewebsites.net/'+ url_for('static', filename='uploads/' + filename))
+			try:
 				trans = visionconnect.TranslateWord(data)
-				return 'Uploaded ' + data + ' ' + trans
 				# out = "<object>" + data + "</object>" + " " + "<translatedObj>" + trans + "</translatedObj>"
 				# return Response(out, mimetype='text/xml')
 
-	except:
+			except:
 				# out = "<object>" + data + "</object>" + " " + "<translatedObj>" trans + "</translatedObj>"
 				# return Response(out, mimetype='text/xml')
-		return ''.join(traceback.format_stack())
-	
+				trans = ''.join(traceback.format_stack())
+			return 'Uploaded ' + data + ' ' + trans
 	return render_template('upload.html')
 
 
