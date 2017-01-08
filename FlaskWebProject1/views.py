@@ -77,7 +77,7 @@ def messenger_reply():
 			#h = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
 			#h.request('POST', '/sendAuro', data, headers)
 			#r = h.getresponse()
-			#r = "asd"
+			r = "asd"
 			return r
 # 			return render_template('upload.html')
  		except:
