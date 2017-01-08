@@ -65,7 +65,7 @@ def messenger_reply():
 	if request.method == 'POST':        
  		url = request.json['url']
 		return url
-# 		data = visionconnect.getTag(url)
+ 		data = visionconnect.getTag(url)
 #		try:
 # 			#trans = visionconnect.TranslateWord(data)
 # 			url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
