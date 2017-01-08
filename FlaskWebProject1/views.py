@@ -62,10 +62,10 @@ def allowed_file(filename):
 	
 @app.route('/messengerReply', methods = ['GET', 'POST'])
 def messenger_reply():
-     if request.method == 'POST':
-         url = request.json['url']
-         data = visionconnect.getTag(url)
-         try:
+	if request.method == 'POST':
+	 url = request.json['url']
+	 data = visionconnect.getTag(url)
+	 try:
 		trans = visionconnect.TranslateWord(data)
 		url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
 		payload = "{\n\t\"message\": \"Blah\"\n}"
