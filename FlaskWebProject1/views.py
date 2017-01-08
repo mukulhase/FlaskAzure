@@ -86,7 +86,7 @@ def upload_URL():
         data = visionconnect.getTag(url)
         try:
             trans = visionconnect.TranslateWord(data)
-            return "Uploaded " + data + " " +  trans + " " + request.data.get("url")
+            return "Uploaded " + data + " " +  trans + " " + request
         except:
             trans = ''.join(traceback.format_stack())
         return "Uploaded " + data + " " + trans
