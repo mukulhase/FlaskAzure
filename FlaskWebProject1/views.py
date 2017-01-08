@@ -106,7 +106,6 @@ def upload_file():
 						  filename))
 				data =  visionconnect.getTag('http://lifegivesyoulemons.azurewebsites.net/'+ url_for('static', filename='uploads/' + filename))
 				
-				trans = visionconnect.TranslateWord(data)
 				return 'Uploaded ' + data + ' ' + trans
 				# out = "<object>" + data + "</object>" + " " + "<translatedObj>" + trans + "</translatedObj>"
 				# return Response(out, mimetype='text/xml')
