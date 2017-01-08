@@ -70,13 +70,13 @@ def messenger_reply():
  			url = "https://evening-caverns-89101.herokuapp.com/sendAuro"
  			data = {"message": "Lolol"}
  			headers = {'content-type': "application/json",}
- 			#conn = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
- 			#conn.request("POST", "/sendAuro", json.dumps(data), headers)
+ 			conn = httplib.HTTPSConnection('evening-caverns-89101.herokuapp.com')
+ 			conn.request("POST", "/sendAuro", json.dumps(data), headers)
 # 			return render_template('upload.html')
  		except:
 			return "Hello"
  			pass
-		return "Hello"
+		return "Success!"
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
