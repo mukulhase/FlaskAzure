@@ -64,7 +64,8 @@ def messenger_reply():
                 'content-type': "application/json",
                 }
             response = requests.request("POST", url, data=payload, headers=headers)
-   
+    return render_template('upload.html')
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -100,7 +101,7 @@ def upload_URL():
         data = visionconnect.getTag(url)
         try:
             trans = visionconnect.TranslateWord(data)
-            return "Uploaded " + data + " " +  trans 
+            return "Uploaded " + data + " " +  trans
         except:
             trans = ''.join(traceback.format_stack())
         return "Uploaded " + data + " " + trans
