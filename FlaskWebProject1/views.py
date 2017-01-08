@@ -9,7 +9,6 @@ from datetime import datetime
 from flask import render_template
 from FlaskWebProject1 import app
 import os
-import requests
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import visionconnect
