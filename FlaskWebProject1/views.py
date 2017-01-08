@@ -6,7 +6,7 @@ from datetime import datetime
 from flask import render_template
 from FlaskWebProject1 import app
 import os
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, response
 from werkzeug.utils import secure_filename
 import visionconnect
 import sys, traceback
@@ -70,7 +70,8 @@ def upload_file():
             data = visionconnect.getTag("http://lifegivesyoulemons.azurewebsites.net/" + url_for('static', filename='uploads/' + filename))
             try:
                 trans = visionconnect.TranslateWord(data)
-                return "Uploaded " + data + " " +  trans
+                out = "<object>" + data + "</object>" + " " + "<translatedObj>" trans + "</translatedObj>"
+                return Response(out, mimetype='text/xml')
             except:
                 trans = ''.join(traceback.format_stack())
             return "Uploaded " + data + " " + trans
