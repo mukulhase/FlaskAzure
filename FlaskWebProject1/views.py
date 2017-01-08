@@ -81,7 +81,7 @@ def upload_file():
 @app.route('/uploadURL', methods=['GET', 'POST'])
 def upload_URL():
     if request.method == 'POST':
-        url = request.form.url
+        url = request.form.get('url')
         data = visionconnect.getTag(url)
         try:
             trans = visionconnect.TranslateWord(data)
