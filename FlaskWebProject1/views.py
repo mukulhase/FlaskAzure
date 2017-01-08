@@ -8,7 +8,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from FlaskWebProject1 import app
-import os, json, urllib, urllib2, httplib
+import os, json, urllib, urllib2, httplib, requests
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import visionconnect
